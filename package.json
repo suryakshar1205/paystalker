@@ -1,0 +1,32 @@
+{
+  "name": "paystalker",
+  "version": "1.0.0",
+  "description": "Autonomous Multi-Channel Dispute Arbitrator & Debt-Recovery Proxy for Caspian Hackathon",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsx src/index.ts",
+    "dev": "tsx watch src/index.ts",
+    "simulate": "tsx src/simulator.ts",
+    "demo": "tsx src/simulator.ts"
+  },
+  "keywords": [
+    "caspian-sdk",
+    "gemini-ai",
+    "dispute-arbitrator",
+    "paystalker",
+    "caspian-hackathon"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "caspian-sdk": "^1.0.0",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3",
+    "tsx": "^4.7.1"
+  }
+}
