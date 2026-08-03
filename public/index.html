@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PayStalker — Caspian Multi-Channel AI Arbitrator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0B0F19;
+      --panel-bg: rgba(17, 24, 39, 0.7);
+      --accent-purple: #7C3AED;
+      --accent-cyan: #06B6D4;
+      --accent-green: #10B981;
+      --accent-red: #EF4444;
+      --accent-amber: #F59E0B;
+      --text-main: #F9FAFB;
+      --text-muted: #9CA3AF;
+      --border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 40%);
+    }
+
+    header {
+      padding: 20px 40px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(12px);
+      background: rgba(11, 15, 25, 0.8);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      font-size: 28px;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .badge {
+      background: rgba(124, 58, 237, 0.2);
+      border: 1px solid var(--accent-purple);
+      color: #C4B5FD;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 30px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      gap: 30px;
+    }
+
+    .panel {
+      background: var(--panel-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .panel-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .controls form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    label {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 14px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2);
+    }
+
+    .btn {
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: none;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-purple), #6D28D9);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .btn-amber {
+      background: linear-gradient(135deg, var(--accent-amber), #D97706);
+      color: white;
+    }
+
+    .btn-green {
+      background: linear-gradient(135deg, var(--accent-green), #059669);
+      color: white;
+    }
+
+    .dashboard-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .channels-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .channel-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .channel-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .icon-discord { background: rgba(88, 101, 242, 0.2); color: #5865F2; }
+    .icon-whatsapp { background: rgba(37, 211, 102, 0.2); color: #25D366; }
+    .icon-email { background: rgba(234, 67, 53, 0.2); color: #EA4335; }
+    .icon-telegram { background: rgba(0, 136, 204, 0.2); color: #0088CC; }
+
+    .channel-info h4 {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .channel-info p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .stream-panel {
+      flex: 1;
+    }
+
+    .stream-logs {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 480px;
+      overflow-y: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+    }
+
+    .log-item {
+      background: rgba(0, 0, 0, 0.3);
+      border-left: 4px solid var(--accent-purple);
+      padding: 14px;
+      border-radius: 4px 8px 8px 4px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .log-item.whatsapp { border-left-color: var(--accent-green); }
+    .log-item.email { border-left-color: var(--accent-amber); }
+    .log-item.telegram { border-left-color: var(--accent-cyan); }
+    .log-item.discord { border-left-color: #5865F2; }
+
+    .log-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .log-content {
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="brand-icon">🎯</span>
+      <h1>PayStalker AI</h1>
+      <span class="badge">Caspian 4-Channel Arbitrator</span>
+    </div>
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <span style="font-size: 13px; color: var(--accent-green); display: flex; align-items: center; gap: 6px;">
+        <span style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></span>
+        Single-Handler Active
+      </span>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Controls Sidebar -->
+    <div class="panel controls">
+      <div class="panel-title">⚡ Live Simulation Actions</div>
+      <form id="actionForm">
+        <div>
+          <label>1. Issue Invoice (!collect)</label>
+          <input type="text" id="collectCmd" value="!collect 1500 client@acmecorp.com Mobile App Redesign">
+          <button type="button" class="btn btn-primary" onclick="triggerCollect()" style="margin-top: 8px; width: 100%;">
+            🚀 Dispatch Invoice (Email + WhatsApp)
+          </button>
+        </div>
+
+        <div style="margin-top: 16px;">
+          <label>2. Client Complaint (WhatsApp)</label>
+          <textarea id="disputeMsg" rows="3">The checkout button crashes on iOS Safari when tapping pay!</textarea>
+          <button type="button" class="btn btn-amber" onclick="triggerDispute()" style="margin-top: 8px; width: 100%;">
+            ⚠️ Send WhatsApp Dispute -> Gemini AI Bug
+          </button>
+        </div>
+
+        <div style="margin-top: 16px;">
+          <label>3. Freelancer Proof (Discord)</label>
+          <input type="text" id="proofUrl" value="https://github.com/acme/checkout-repo/pull/42">
+          <button type="button" class="btn btn-green" onclick="triggerResolve()" style="margin-top: 8px; width: 100%;">
+            🎉 Submit Discord Proof -> Settle Invoice
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div class="dashboard-grid">
+      <!-- 4 Channel Cards -->
+      <div class="channels-bar">
+        <div class="channel-card">
+          <div class="channel-icon icon-discord">💬</div>
+          <div class="channel-info">
+            <h4>Discord</h4>
+            <p>Freelancer Hub</p>
+          </div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-icon icon-whatsapp">🟢</div>
+          <div class="channel-info">
+            <h4>WhatsApp</h4>
+            <p>Client Chat & Bugs</p>
+          </div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-icon icon-email">📧</div>
+          <div class="channel-info">
+            <h4>Email</h4>
+            <p>Executive Audit</p>
+          </div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-icon icon-telegram">✈️</div>
+          <div class="channel-info">
+            <h4>Telegram</h4>
+            <p>Urgent Dev Alerts</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real-time Event Stream -->
+      <div class="panel stream-panel">
+        <div class="panel-title">📡 Real-Time Single-Handler Message Stream</div>
+        <div class="stream-logs" id="streamLogs">
+          <div class="log-item discord">
+            <div class="log-header">
+              <span>DISCORD • #freelancer-dev-alerts</span>
+              <span>System Ready</span>
+            </div>
+            <div class="log-content">🚀 PayStalker 4-Channel Caspian Single-Handler Engine Initialized. Ready for live simulation.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function addLog(channel, target, content) {
+      const logs = document.getElementById('streamLogs');
+      const item = document.createElement('div');
+      item.className = `log-item ${channel.toLowerCase()}`;
+      item.innerHTML = `
+        <div class="log-header">
+          <span>${channel.toUpperCase()} • ${target}</span>
+          <span>${new Date().toLocaleTimeString()}</span>
+        </div>
+        <div class="log-content">${content}</div>
+      `;
+      logs.prepend(item);
+    }
+
+    async function triggerCollect() {
+      const cmd = document.getElementById('collectCmd').value;
+      const res = await fetch('/api/collect', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ command: cmd })
+      });
+      const data = await res.json();
+      
+      addLog('DISCORD', 'Command Received', `Initiated: ${cmd}`);
+      addLog('EMAIL', data.clientEmail, `[PayStalker Invoice ${data.invId}] Payment Notice: $${data.amount}\n⚡ Dynamic Early Discount: 10% off ($${data.discountedAmount})`);
+      addLog('WHATSAPP', 'Client Phone', `🎯 PayStalker Target Acquired [${data.invId}]: $${data.amount} issued. Reply BUG if deliverable issues exist.`);
+      addLog('DISCORD', 'ACK', `🎯 PayStalker Target Acquired [${data.invId}]: Email & WhatsApp dynamic decay offers sent.`);
+    }
+
+    async function triggerDispute() {
+      const msg = document.getElementById('disputeMsg').value;
+      const res = await fetch('/api/dispute', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg })
+      });
+      const data = await res.json();
+
+      addLog('WHATSAPP', 'Client Incoming', `"${msg}"`);
+      addLog('DISCORD', 'Gemini AI Translation Report', `⚠️ CLIENT DISPUTE RECEIVED [${data.invId}]\n\n${data.bugReport}\n\nReply PROOF ${data.invId} <link> to settle.`);
+      addLog('TELEGRAM', '@freelancer_alerts', `🚨 URGENT: Client dispute filed for [${data.invId}] via WHATSAPP!\nCheck Discord for Gemini technical report.`);
+      addLog('WHATSAPP', 'Client ACK', `✅ Feedback received for [${data.invId}]. Converted into developer bug report.`);
+    }
+
+    async function triggerResolve() {
+      const url = document.getElementById('proofUrl').value;
+      const res = await fetch('/api/resolve', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ proofUrl: url })
+      });
+      const data = await res.json();
+
+      addLog('DISCORD', 'Developer Proof', `PROOF ${data.invId} ${url}`);
+      addLog('WHATSAPP', 'Client Resolution', `✅ Developer provided proof of completion for [${data.invId}]: ${url}. Account closed.`);
+      addLog('EMAIL', data.clientEmail, `Subject: Resolved & Settled [${data.invId}]\n\n${data.resolutionEmail}`);
+      addLog('DISCORD', 'Final ACK', `🎉 PayStalker Target Settled [${data.invId}] across all 4 channels!`);
+    }
+  </script>
+</body>
+</html>

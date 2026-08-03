@@ -7,6 +7,8 @@ import {
   getDecayingDiscount 
 } from './aiService.js';
 import { runLiveSimulation } from './simulator.js';
+import { startDashboardServer } from './server.js';
+
 
 // Initialize Caspian client
 const caspianApiKey = process.env.CASPIAN_API_KEY || 'demo-caspian-key';
@@ -232,3 +234,7 @@ caspian.onMessage(async (msg: CaspianMessage) => {
 
 console.log('🚀 PayStalker 4-Channel Caspian Arbitrator is active.');
 console.log('💡 Tip for Judges: Run `npm run simulate` to execute the full multi-channel workflow live!');
+
+// Launch Live Interactive Web Dashboard
+startDashboardServer();
+

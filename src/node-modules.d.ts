@@ -1,27 +1,3 @@
-// Ambient global declarations for Node.js process and built-in modules
-
-declare global {
-  namespace NodeJS {
-    interface ProcessEnv {
-      [key: string]: string | undefined;
-      CASPIAN_API_KEY?: string;
-      GEMINI_API_KEY?: string;
-      FREELANCER_DISCORD_CHANNEL?: string;
-      FREELANCER_TELEGRAM_CHAT?: string;
-      CLIENT_EMAIL?: string;
-      CLIENT_WHATSAPP?: string;
-      PORT?: string;
-    }
-    interface Process {
-      env: ProcessEnv;
-      argv: string[];
-      cwd(): string;
-    }
-  }
-
-  var process: NodeJS.Process;
-}
-
 declare module 'http' {
   export interface IncomingMessage {
     url?: string;
@@ -47,4 +23,8 @@ declare module 'path' {
   export function join(...paths: string[]): string;
 }
 
-export {};
+declare module 'dotenv' {
+  export function config(options?: any): any;
+}
+
+declare module 'dotenv/config' {}
