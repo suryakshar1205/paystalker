@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PayStalker — Caspian Multi-Channel AI Arbitrator</title>
+  <title>PayStalker — Multi-Client Caspian AI Arbitrator</title>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-dark: #0B0F19;
-      --panel-bg: rgba(17, 24, 39, 0.7);
+      --panel-bg: rgba(17, 24, 39, 0.75);
       --accent-purple: #7C3AED;
       --accent-cyan: #06B6D4;
       --accent-green: #10B981;
@@ -19,11 +19,7 @@
       --border-color: rgba(255, 255, 255, 0.1);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Outfit', sans-serif;
@@ -50,11 +46,7 @@
       z-index: 100;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .brand { display: flex; align-items: center; gap: 12px; }
 
     .brand-icon {
       font-size: 28px;
@@ -64,11 +56,7 @@
       -webkit-text-fill-color: transparent;
     }
 
-    h1 {
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
+    h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
 
     .badge {
       background: rgba(124, 58, 237, 0.2);
@@ -80,11 +68,11 @@
       font-weight: 600;
     }
 
-    /* Interactive Stepper Banner */
+    /* Stepper Bar */
     .flow-stepper {
       background: rgba(17, 24, 39, 0.8);
       border-bottom: 1px solid var(--border-color);
-      padding: 14px 30px;
+      padding: 12px 30px;
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -94,12 +82,12 @@
     .step-box {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 8px 16px;
+      gap: 8px;
+      padding: 6px 14px;
       border-radius: 8px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border-color);
-      font-size: 13px;
+      font-size: 12px;
     }
 
     .step-box.active {
@@ -108,8 +96,8 @@
     }
 
     .step-num {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       background: var(--accent-purple);
       color: white;
@@ -117,12 +105,7 @@
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 12px;
-    }
-
-    .arrow {
-      color: var(--text-muted);
-      font-size: 16px;
+      font-size: 11px;
     }
 
     .container {
@@ -131,7 +114,7 @@
       padding: 24px;
       width: 100%;
       display: grid;
-      grid-template-columns: 380px 1fr;
+      grid-template-columns: 400px 1fr;
       gap: 24px;
     }
 
@@ -145,21 +128,15 @@
     }
 
     .panel-title {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: space-between;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-    }
-
-    .controls form {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
     }
 
     .step-card {
@@ -167,52 +144,43 @@
       border: 1px solid var(--border-color);
       border-radius: 10px;
       padding: 14px;
+      margin-bottom: 14px;
     }
 
     .step-card h3 {
       font-size: 13px;
       color: var(--accent-cyan);
       margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
 
-    label {
-      font-size: 12px;
-      color: var(--text-muted);
-      display: block;
-      margin-bottom: 6px;
-    }
+    label { font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 4px; }
 
-    input, textarea {
+    input, select, textarea {
       width: 100%;
-      padding: 9px 12px;
+      padding: 8px 12px;
       background: rgba(0, 0, 0, 0.5);
       border: 1px solid var(--border-color);
       border-radius: 6px;
       color: var(--text-main);
       font-family: inherit;
-      font-size: 13px;
+      font-size: 12px;
       outline: none;
       transition: all 0.2s;
     }
 
-    input:focus, textarea:focus {
-      border-color: var(--accent-cyan);
-    }
+    input:focus, select:focus, textarea:focus { border-color: var(--accent-cyan); }
 
     .btn {
-      padding: 11px 16px;
+      padding: 10px 14px;
       border-radius: 8px;
       border: none;
       font-weight: 600;
-      font-size: 13px;
+      font-size: 12px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
       transition: all 0.2s;
       width: 100%;
       margin-top: 8px;
@@ -221,39 +189,34 @@
     .btn-primary { background: linear-gradient(135deg, var(--accent-purple), #6D28D9); color: white; }
     .btn-amber { background: linear-gradient(135deg, var(--accent-amber), #D97706); color: white; }
     .btn-green { background: linear-gradient(135deg, var(--accent-green), #059669); color: white; }
-
     .btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
-    .dashboard-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
+    .dashboard-grid { display: flex; flex-direction: column; gap: 20px; }
 
     .channels-bar {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+      gap: 12px;
     }
 
     .channel-card {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 14px;
+      border-radius: 10px;
+      padding: 12px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .channel-icon {
-      width: 38px;
-      height: 38px;
+      width: 34px;
+      height: 34px;
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 16px;
     }
 
     .icon-discord { background: rgba(88, 101, 242, 0.2); color: #5865F2; }
@@ -261,25 +224,51 @@
     .icon-email { background: rgba(234, 67, 53, 0.2); color: #EA4335; }
     .icon-telegram { background: rgba(0, 136, 204, 0.2); color: #0088CC; }
 
-    .channel-info h4 { font-size: 13px; font-weight: 600; }
-    .channel-info p { font-size: 11px; color: var(--text-muted); }
+    .channel-info h4 { font-size: 12px; font-weight: 600; }
+    .channel-info p { font-size: 10px; color: var(--text-muted); }
 
-    .stream-panel { flex: 1; }
+    /* Multi-Client Invoices Table */
+    .invoices-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 6px;
+    }
+
+    .invoices-table th, .invoices-table td {
+      padding: 8px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .invoices-table th { color: var(--text-muted); font-weight: 600; }
+
+    .status-badge {
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .status-pending { background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); border: 1px solid var(--accent-amber); }
+    .status-disputed { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border: 1px solid var(--accent-red); }
+    .status-paid { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); border: 1px solid var(--accent-green); }
 
     .stream-logs {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      max-height: 480px;
+      gap: 10px;
+      max-height: 380px;
       overflow-y: auto;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
+      font-size: 11px;
     }
 
     .log-item {
       background: rgba(0, 0, 0, 0.4);
       border-left: 4px solid var(--accent-purple);
-      padding: 12px 16px;
+      padding: 10px 14px;
       border-radius: 4px 8px 8px 4px;
       animation: fadeIn 0.3s ease;
     }
@@ -289,20 +278,10 @@
     .log-item.telegram { border-left-color: var(--accent-cyan); }
     .log-item.discord { border-left-color: #5865F2; }
 
-    .log-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 6px;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
+    .log-header { display: flex; justify-content: space-between; margin-bottom: 4px; color: var(--text-muted); font-size: 10px; }
+    .log-content { white-space: pre-wrap; line-height: 1.4; }
 
-    .log-content { white-space: pre-wrap; line-height: 1.5; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
@@ -311,31 +290,31 @@
     <div class="brand">
       <span class="brand-icon">🎯</span>
       <h1>PayStalker AI</h1>
-      <span class="badge">Caspian 4-Channel Arbitrator</span>
+      <span class="badge">Multi-Client & Multi-Dispute Engine</span>
     </div>
     <div>
-      <span style="font-size: 13px; color: var(--accent-green); display: flex; align-items: center; gap: 6px;">
+      <span style="font-size: 12px; color: var(--accent-green); display: flex; align-items: center; gap: 6px;">
         <span style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></span>
-        Single-Handler Active across 4 Channels
+        Single-Handler Active Across 4 Channels
       </span>
     </div>
   </header>
 
-  <!-- Interactive Workflow Stepper Bar -->
+  <!-- Interactive Workflow Stepper -->
   <div class="flow-stepper">
     <div class="step-box active" id="stepIndicator1">
       <span class="step-num">1</span>
       <span><strong>Freelancer Issues Invoice</strong> (!collect on Discord)</span>
     </div>
-    <span class="arrow">➔</span>
+    <span>➔</span>
     <div class="step-box" id="stepIndicator2">
       <span class="step-num">2</span>
-      <span><strong>Client Reports Bug</strong> (WhatsApp -> Gemini AI Report)</span>
+      <span><strong>Client Files Bug Dispute</strong> (WhatsApp -> Gemini AI Report)</span>
     </div>
-    <span class="arrow">➔</span>
+    <span>➔</span>
     <div class="step-box" id="stepIndicator3">
       <span class="step-num">3</span>
-      <span><strong>Freelancer Submits Proof</strong> (PROOF -> Account Settled)</span>
+      <span><strong>Freelancer Submits Proof</strong> (PROOF -> Settle Invoice)</span>
     </div>
   </div>
 
@@ -343,63 +322,78 @@
   <div class="container">
     <!-- Controls Sidebar -->
     <div class="panel controls">
-      <div class="panel-title">⚡ Interactive Workflow Controls</div>
-      <form id="actionForm">
-        <!-- Step 1 Card -->
-        <div class="step-card">
-          <h3>📌 STEP 1: Issue Invoice</h3>
-          <label>Freelancer types on Discord:</label>
-          <input type="text" id="collectCmd" value="!collect 1500 client@acmecorp.com Mobile App Redesign">
-          <button type="button" class="btn btn-primary" onclick="triggerCollect()">
-            🚀 Dispatch Invoice (Email + WhatsApp)
-          </button>
-        </div>
+      <div class="panel-title">
+        <span>⚡ Multi-Client Controls</span>
+      </div>
+      
+      <!-- Step 1 Card -->
+      <div class="step-card">
+        <h3>📌 STEP 1: Issue New Client Invoice</h3>
+        <label>Select Preset or Custom Command:</label>
+        <select id="presetSelect" onchange="applyPreset()" style="margin-bottom: 8px;">
+          <option value="!collect 1500 client@acmecorp.com Mobile App Redesign">Client A: ACME Corp ($1500 Mobile App)</option>
+          <option value="!collect 2800 finance@designstudio.io E-Commerce Portal Development">Client B: DesignStudio ($2800 Web Portal)</option>
+          <option value="!collect 950 dev@startuphub.co API Payment Gateway Integration">Client C: StartupHub ($950 API Integration)</option>
+        </select>
+        <input type="text" id="collectCmd" value="!collect 1500 client@acmecorp.com Mobile App Redesign">
+        <button type="button" class="btn btn-primary" onclick="triggerCollect()">
+          🚀 Issue Invoice (Email + WhatsApp)
+        </button>
+      </div>
 
-        <!-- Step 2 Card -->
-        <div class="step-card">
-          <h3>⚠️ STEP 2: Client Bug Dispute</h3>
-          <label>Client complains on WhatsApp:</label>
-          <textarea id="disputeMsg" rows="2">The checkout button crashes on iOS Safari when tapping pay!</textarea>
-          <button type="button" class="btn btn-amber" onclick="triggerDispute()">
-            🤖 Translate WhatsApp -> Gemini Bug
-          </button>
-        </div>
+      <!-- Target Invoice Selector for Multi-Dispute -->
+      <div class="step-card">
+        <h3>🎯 Target Invoice Selector</h3>
+        <label>Select Active Invoice for Steps 2 & 3:</label>
+        <select id="targetInvoiceSelect">
+          <option value="">Latest Active Invoice</option>
+        </select>
+      </div>
 
-        <!-- Step 3 Card -->
-        <div class="step-card">
-          <h3>🎉 STEP 3: Freelancer Fix & Settle</h3>
-          <label>Freelancer submits proof on Discord:</label>
-          <input type="text" id="proofUrl" value="https://github.com/acme/checkout-repo/pull/42">
-          <button type="button" class="btn btn-green" onclick="triggerResolve()">
-            ✅ Submit Proof -> Close Account
-          </button>
-        </div>
-      </form>
+      <!-- Step 2 Card -->
+      <div class="step-card">
+        <h3>⚠️ STEP 2: File Client WhatsApp Bug</h3>
+        <label>WhatsApp Client Feedback:</label>
+        <textarea id="disputeMsg" rows="2">The payment gateway crashes on mobile checkout!</textarea>
+        <button type="button" class="btn btn-amber" onclick="triggerDispute()">
+          🤖 WhatsApp Dispute -> Gemini AI Bug
+        </button>
+      </div>
+
+      <!-- Step 3 Card -->
+      <div class="step-card">
+        <h3>🎉 STEP 3: Submit Developer Proof</h3>
+        <label>Discord Proof PR / Commit Link:</label>
+        <input type="text" id="proofUrl" value="https://github.com/acme/checkout-repo/pull/42">
+        <button type="button" class="btn btn-green" onclick="triggerResolve()">
+          ✅ Submit Discord Proof -> Close Account
+        </button>
+      </div>
     </div>
 
-    <!-- Main Dashboard Stream -->
+    <!-- Main Dashboard Grid -->
     <div class="dashboard-grid">
-      <!-- 4 Channel Cards -->
+      <!-- 4 Channels Bar -->
       <div class="channels-bar">
         <div class="channel-card">
           <div class="channel-icon icon-discord">💬</div>
           <div class="channel-info">
             <h4>Discord</h4>
-            <p>Freelancer Command</p>
+            <p>Freelancer Hub</p>
           </div>
         </div>
         <div class="channel-card">
           <div class="channel-icon icon-whatsapp">🟢</div>
           <div class="channel-info">
             <h4>WhatsApp</h4>
-            <p>Client Chat & Bugs</p>
+            <p>Client Complaints</p>
           </div>
         </div>
         <div class="channel-card">
           <div class="channel-icon icon-email">📧</div>
           <div class="channel-info">
             <h4>Email</h4>
-            <p>Executive Audit</p>
+            <p>Executive Audits</p>
           </div>
         </div>
         <div class="channel-card">
@@ -411,16 +405,41 @@
         </div>
       </div>
 
-      <!-- Real-Time Log Stream -->
+      <!-- Multi-Client Invoices Panel -->
+      <div class="panel">
+        <div class="panel-title">
+          <span>📊 Active Client Accounts & Invoices</span>
+          <button class="btn btn-primary" style="width: auto; padding: 4px 10px; font-size: 11px; margin: 0;" onclick="fetchInvoices()">🔄 Refresh Accounts</button>
+        </div>
+        <table class="invoices-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Client Email</th>
+              <th>Description</th>
+              <th>Amount</th>
+              <th>Decay Discount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="invoicesTableBody">
+            <tr>
+              <td colspan="6" style="text-align: center; color: var(--text-muted);">No active accounts. Click Step 1 to issue an invoice.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Real-Time Stream Log -->
       <div class="panel stream-panel">
-        <div class="panel-title">📡 Real-Time Single-Handler Message Stream</div>
+        <div class="panel-title">📡 Real-Time Single-Handler Event Stream</div>
         <div class="stream-logs" id="streamLogs">
           <div class="log-item discord">
             <div class="log-header">
-              <span>DISCORD • #freelancer-dev-alerts</span>
-              <span>System Active</span>
+              <span>DISCORD • System</span>
+              <span>Active</span>
             </div>
-            <div class="log-content">🚀 PayStalker 4-Channel Single-Handler Engine Initialized. Click STEP 1, STEP 2, and STEP 3 on the left to see the workflow live.</div>
+            <div class="log-content">🚀 PayStalker Multi-Client Arbitrator Ready. Select a client preset above to test multi-invoice workflows live.</div>
           </div>
         </div>
       </div>
@@ -428,10 +447,15 @@
   </div>
 
   <script>
-    function updateStepIndicator(stepNum) {
+    function updateStepIndicator(num) {
       document.querySelectorAll('.step-box').forEach(b => b.classList.remove('active'));
-      const activeBox = document.getElementById(`stepIndicator${stepNum}`);
-      if (activeBox) activeBox.classList.add('active');
+      const active = document.getElementById(`stepIndicator${num}`);
+      if (active) active.classList.add('active');
+    }
+
+    function applyPreset() {
+      const val = document.getElementById('presetSelect').value;
+      document.getElementById('collectCmd').value = val;
     }
 
     function addLog(channel, target, content) {
@@ -448,6 +472,44 @@
       logs.prepend(item);
     }
 
+    async function fetchInvoices() {
+      try {
+        const res = await fetch('/api/invoices');
+        const data = await res.json();
+        const tbody = document.getElementById('invoicesTableBody');
+        const select = document.getElementById('targetInvoiceSelect');
+        
+        if (!data || data.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No active accounts. Click Step 1 to issue an invoice.</td></tr>`;
+          select.innerHTML = `<option value="">Latest Active Invoice</option>`;
+          return;
+        }
+
+        select.innerHTML = `<option value="">Latest Active Invoice</option>`;
+
+        tbody.innerHTML = data.map(inv => {
+          select.innerHTML += `<option value="${inv.id}">${inv.id} — ${inv.clientEmail} ($${inv.amount})</option>`;
+          
+          let statusBadge = '<span class="status-badge status-pending">PENDING</span>';
+          if (inv.status === 'DISPUTED_BUG') statusBadge = '<span class="status-badge status-disputed">DISPUTED BUG</span>';
+          if (inv.status === 'PAID') statusBadge = '<span class="status-badge status-paid">PAID & SETTLED</span>';
+
+          return `
+            <tr>
+              <td><strong>${inv.id}</strong></td>
+              <td>${inv.clientEmail}</td>
+              <td>${inv.description}</td>
+              <td>$${inv.amount}</td>
+              <td>${inv.currentDiscountPercent}% ($${inv.discountedAmount})</td>
+              <td>${statusBadge}</td>
+            </tr>
+          `;
+        }).join('');
+      } catch (e) {
+        console.error('Error fetching invoices:', e);
+      }
+    }
+
     async function triggerCollect() {
       updateStepIndicator(1);
       const cmd = document.getElementById('collectCmd').value;
@@ -458,19 +520,22 @@
       });
       const data = await res.json();
       
-      addLog('DISCORD', 'Command Initiated', `Command: ${cmd}`);
+      addLog('DISCORD', 'Command Initiated', `Issued: ${cmd}`);
       addLog('EMAIL', data.clientEmail, `[PayStalker Invoice ${data.invId}] Payment Notice: $${data.amount}\n⚡ Dynamic Early Discount: ${data.discountPercent}% off ($${data.discountedAmount})`);
-      addLog('WHATSAPP', 'Client Phone', `🎯 PayStalker Target Acquired [${data.invId}]: $${data.amount} issued. Reply BUG if deliverable issues exist.`);
+      addLog('WHATSAPP', 'Client Phone', `🎯 PayStalker Target Acquired [${data.invId}]: $${data.amount} issued for "${data.description}". Reply BUG if deliverable issues exist.`);
       addLog('DISCORD', 'ACK', `🎯 PayStalker Target Acquired [${data.invId}]: Email & WhatsApp dynamic decay offers sent.`);
+
+      await fetchInvoices();
     }
 
     async function triggerDispute() {
       updateStepIndicator(2);
       const msg = document.getElementById('disputeMsg').value;
+      const selectedInvId = document.getElementById('targetInvoiceSelect').value;
       const res = await fetch('/api/dispute', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: msg })
+        body: JSON.stringify({ message: msg, invId: selectedInvId })
       });
       const data = await res.json();
 
@@ -478,15 +543,18 @@
       addLog('DISCORD', 'Gemini AI Bug Report', `⚠️ CLIENT DISPUTE RECEIVED [${data.invId}]\n\n${data.bugReport}\n\nReply PROOF ${data.invId} <link> to settle.`);
       addLog('TELEGRAM', '@freelancer_alerts', `🚨 URGENT: Client dispute filed for [${data.invId}] via WHATSAPP!\nCheck Discord for Gemini technical report.`);
       addLog('WHATSAPP', 'Client ACK', `✅ Feedback received for [${data.invId}]. Converted into developer bug report.`);
+
+      await fetchInvoices();
     }
 
     async function triggerResolve() {
       updateStepIndicator(3);
       const url = document.getElementById('proofUrl').value;
+      const selectedInvId = document.getElementById('targetInvoiceSelect').value;
       const res = await fetch('/api/resolve', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ proofUrl: url })
+        body: JSON.stringify({ proofUrl: url, invId: selectedInvId })
       });
       const data = await res.json();
 
@@ -494,7 +562,12 @@
       addLog('WHATSAPP', 'Client Resolution', `✅ Developer provided proof of completion for [${data.invId}]: ${url}. Account closed.`);
       addLog('EMAIL', data.clientEmail, `Subject: Resolved & Settled [${data.invId}]\n\n${data.resolutionEmail}`);
       addLog('DISCORD', 'Final ACK', `🎉 PayStalker Target Settled [${data.invId}] across all 4 channels!`);
+
+      await fetchInvoices();
     }
+
+    // Auto-fetch active invoices on load
+    fetchInvoices();
   </script>
 </body>
 </html>
