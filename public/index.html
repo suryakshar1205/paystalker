@@ -38,7 +38,7 @@
     }
 
     header {
-      padding: 20px 40px;
+      padding: 16px 30px;
       border-bottom: 1px solid var(--border-color);
       display: flex;
       justify-content: space-between;
@@ -64,9 +64,8 @@
       -webkit-text-fill-color: transparent;
     }
 
-
     h1 {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
       letter-spacing: -0.5px;
     }
@@ -81,29 +80,74 @@
       font-weight: 600;
     }
 
+    /* Interactive Stepper Banner */
+    .flow-stepper {
+      background: rgba(17, 24, 39, 0.8);
+      border-bottom: 1px solid var(--border-color);
+      padding: 14px 30px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      font-size: 13px;
+    }
+
+    .step-box.active {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 12px rgba(6, 182, 212, 0.2);
+    }
+
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--accent-purple);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .arrow {
+      color: var(--text-muted);
+      font-size: 16px;
+    }
+
     .container {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 30px;
+      padding: 24px;
       width: 100%;
       display: grid;
-      grid-template-columns: 350px 1fr;
-      gap: 30px;
+      grid-template-columns: 380px 1fr;
+      gap: 24px;
     }
 
     .panel {
       background: var(--panel-bg);
       border: 1px solid var(--border-color);
       border-radius: 16px;
-      padding: 24px;
+      padding: 20px;
       backdrop-filter: blur(16px);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     }
 
     .panel-title {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -115,96 +159,101 @@
     .controls form {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 18px;
+    }
+
+    .step-card {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .step-card h3 {
+      font-size: 13px;
+      color: var(--accent-cyan);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     label {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--text-muted);
+      display: block;
+      margin-bottom: 6px;
     }
 
-    input, select, textarea {
+    input, textarea {
       width: 100%;
-      padding: 10px 14px;
-      background: rgba(0, 0, 0, 0.4);
+      padding: 9px 12px;
+      background: rgba(0, 0, 0, 0.5);
       border: 1px solid var(--border-color);
-      border-radius: 8px;
+      border-radius: 6px;
       color: var(--text-main);
       font-family: inherit;
-      font-size: 14px;
+      font-size: 13px;
       outline: none;
       transition: all 0.2s;
     }
 
-    input:focus, select:focus, textarea:focus {
+    input:focus, textarea:focus {
       border-color: var(--accent-cyan);
-      box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2);
     }
 
     .btn {
-      padding: 12px 20px;
+      padding: 11px 16px;
       border-radius: 8px;
       border: none;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 13px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       transition: all 0.2s;
+      width: 100%;
+      margin-top: 8px;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent-purple), #6D28D9);
-      color: white;
-    }
+    .btn-primary { background: linear-gradient(135deg, var(--accent-purple), #6D28D9); color: white; }
+    .btn-amber { background: linear-gradient(135deg, var(--accent-amber), #D97706); color: white; }
+    .btn-green { background: linear-gradient(135deg, var(--accent-green), #059669); color: white; }
 
-    .btn-primary:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
-    }
-
-    .btn-amber {
-      background: linear-gradient(135deg, var(--accent-amber), #D97706);
-      color: white;
-    }
-
-    .btn-green {
-      background: linear-gradient(135deg, var(--accent-green), #059669);
-      color: white;
-    }
+    .btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
     .dashboard-grid {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 20px;
     }
 
     .channels-bar {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+      gap: 14px;
     }
 
     .channel-card {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border-color);
       border-radius: 12px;
-      padding: 16px;
+      padding: 14px;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
 
     .channel-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 18px;
     }
 
     .icon-discord { background: rgba(88, 101, 242, 0.2); color: #5865F2; }
@@ -212,19 +261,10 @@
     .icon-email { background: rgba(234, 67, 53, 0.2); color: #EA4335; }
     .icon-telegram { background: rgba(0, 136, 204, 0.2); color: #0088CC; }
 
-    .channel-info h4 {
-      font-size: 14px;
-      font-weight: 600;
-    }
+    .channel-info h4 { font-size: 13px; font-weight: 600; }
+    .channel-info p { font-size: 11px; color: var(--text-muted); }
 
-    .channel-info p {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .stream-panel {
-      flex: 1;
-    }
+    .stream-panel { flex: 1; }
 
     .stream-logs {
       display: flex;
@@ -233,13 +273,13 @@
       max-height: 480px;
       overflow-y: auto;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
+      font-size: 12px;
     }
 
     .log-item {
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.4);
       border-left: 4px solid var(--accent-purple);
-      padding: 14px;
+      padding: 12px 16px;
       border-radius: 4px 8px 8px 4px;
       animation: fadeIn 0.3s ease;
     }
@@ -257,10 +297,7 @@
       color: var(--text-muted);
     }
 
-    .log-content {
-      white-space: pre-wrap;
-      line-height: 1.5;
-    }
+    .log-content { white-space: pre-wrap; line-height: 1.5; }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(6px); }
@@ -269,52 +306,78 @@
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
     <div class="brand">
       <span class="brand-icon">🎯</span>
       <h1>PayStalker AI</h1>
       <span class="badge">Caspian 4-Channel Arbitrator</span>
     </div>
-    <div style="display: flex; gap: 12px; align-items: center;">
+    <div>
       <span style="font-size: 13px; color: var(--accent-green); display: flex; align-items: center; gap: 6px;">
         <span style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></span>
-        Single-Handler Active
+        Single-Handler Active across 4 Channels
       </span>
     </div>
   </header>
 
+  <!-- Interactive Workflow Stepper Bar -->
+  <div class="flow-stepper">
+    <div class="step-box active" id="stepIndicator1">
+      <span class="step-num">1</span>
+      <span><strong>Freelancer Issues Invoice</strong> (!collect on Discord)</span>
+    </div>
+    <span class="arrow">➔</span>
+    <div class="step-box" id="stepIndicator2">
+      <span class="step-num">2</span>
+      <span><strong>Client Reports Bug</strong> (WhatsApp -> Gemini AI Report)</span>
+    </div>
+    <span class="arrow">➔</span>
+    <div class="step-box" id="stepIndicator3">
+      <span class="step-num">3</span>
+      <span><strong>Freelancer Submits Proof</strong> (PROOF -> Account Settled)</span>
+    </div>
+  </div>
+
+  <!-- Main Container -->
   <div class="container">
     <!-- Controls Sidebar -->
     <div class="panel controls">
-      <div class="panel-title">⚡ Live Simulation Actions</div>
+      <div class="panel-title">⚡ Interactive Workflow Controls</div>
       <form id="actionForm">
-        <div>
-          <label>1. Issue Invoice (!collect)</label>
+        <!-- Step 1 Card -->
+        <div class="step-card">
+          <h3>📌 STEP 1: Issue Invoice</h3>
+          <label>Freelancer types on Discord:</label>
           <input type="text" id="collectCmd" value="!collect 1500 client@acmecorp.com Mobile App Redesign">
-          <button type="button" class="btn btn-primary" onclick="triggerCollect()" style="margin-top: 8px; width: 100%;">
+          <button type="button" class="btn btn-primary" onclick="triggerCollect()">
             🚀 Dispatch Invoice (Email + WhatsApp)
           </button>
         </div>
 
-        <div style="margin-top: 16px;">
-          <label>2. Client Complaint (WhatsApp)</label>
-          <textarea id="disputeMsg" rows="3">The checkout button crashes on iOS Safari when tapping pay!</textarea>
-          <button type="button" class="btn btn-amber" onclick="triggerDispute()" style="margin-top: 8px; width: 100%;">
-            ⚠️ Send WhatsApp Dispute -> Gemini AI Bug
+        <!-- Step 2 Card -->
+        <div class="step-card">
+          <h3>⚠️ STEP 2: Client Bug Dispute</h3>
+          <label>Client complains on WhatsApp:</label>
+          <textarea id="disputeMsg" rows="2">The checkout button crashes on iOS Safari when tapping pay!</textarea>
+          <button type="button" class="btn btn-amber" onclick="triggerDispute()">
+            🤖 Translate WhatsApp -> Gemini Bug
           </button>
         </div>
 
-        <div style="margin-top: 16px;">
-          <label>3. Freelancer Proof (Discord)</label>
+        <!-- Step 3 Card -->
+        <div class="step-card">
+          <h3>🎉 STEP 3: Freelancer Fix & Settle</h3>
+          <label>Freelancer submits proof on Discord:</label>
           <input type="text" id="proofUrl" value="https://github.com/acme/checkout-repo/pull/42">
-          <button type="button" class="btn btn-green" onclick="triggerResolve()" style="margin-top: 8px; width: 100%;">
-            🎉 Submit Discord Proof -> Settle Invoice
+          <button type="button" class="btn btn-green" onclick="triggerResolve()">
+            ✅ Submit Proof -> Close Account
           </button>
         </div>
       </form>
     </div>
 
-    <!-- Main Dashboard -->
+    <!-- Main Dashboard Stream -->
     <div class="dashboard-grid">
       <!-- 4 Channel Cards -->
       <div class="channels-bar">
@@ -322,7 +385,7 @@
           <div class="channel-icon icon-discord">💬</div>
           <div class="channel-info">
             <h4>Discord</h4>
-            <p>Freelancer Hub</p>
+            <p>Freelancer Command</p>
           </div>
         </div>
         <div class="channel-card">
@@ -348,16 +411,16 @@
         </div>
       </div>
 
-      <!-- Real-time Event Stream -->
+      <!-- Real-Time Log Stream -->
       <div class="panel stream-panel">
         <div class="panel-title">📡 Real-Time Single-Handler Message Stream</div>
         <div class="stream-logs" id="streamLogs">
           <div class="log-item discord">
             <div class="log-header">
               <span>DISCORD • #freelancer-dev-alerts</span>
-              <span>System Ready</span>
+              <span>System Active</span>
             </div>
-            <div class="log-content">🚀 PayStalker 4-Channel Caspian Single-Handler Engine Initialized. Ready for live simulation.</div>
+            <div class="log-content">🚀 PayStalker 4-Channel Single-Handler Engine Initialized. Click STEP 1, STEP 2, and STEP 3 on the left to see the workflow live.</div>
           </div>
         </div>
       </div>
@@ -365,6 +428,12 @@
   </div>
 
   <script>
+    function updateStepIndicator(stepNum) {
+      document.querySelectorAll('.step-box').forEach(b => b.classList.remove('active'));
+      const activeBox = document.getElementById(`stepIndicator${stepNum}`);
+      if (activeBox) activeBox.classList.add('active');
+    }
+
     function addLog(channel, target, content) {
       const logs = document.getElementById('streamLogs');
       const item = document.createElement('div');
@@ -380,6 +449,7 @@
     }
 
     async function triggerCollect() {
+      updateStepIndicator(1);
       const cmd = document.getElementById('collectCmd').value;
       const res = await fetch('/api/collect', {
         method: 'POST',
@@ -388,13 +458,14 @@
       });
       const data = await res.json();
       
-      addLog('DISCORD', 'Command Received', `Initiated: ${cmd}`);
-      addLog('EMAIL', data.clientEmail, `[PayStalker Invoice ${data.invId}] Payment Notice: $${data.amount}\n⚡ Dynamic Early Discount: 10% off ($${data.discountedAmount})`);
+      addLog('DISCORD', 'Command Initiated', `Command: ${cmd}`);
+      addLog('EMAIL', data.clientEmail, `[PayStalker Invoice ${data.invId}] Payment Notice: $${data.amount}\n⚡ Dynamic Early Discount: ${data.discountPercent}% off ($${data.discountedAmount})`);
       addLog('WHATSAPP', 'Client Phone', `🎯 PayStalker Target Acquired [${data.invId}]: $${data.amount} issued. Reply BUG if deliverable issues exist.`);
       addLog('DISCORD', 'ACK', `🎯 PayStalker Target Acquired [${data.invId}]: Email & WhatsApp dynamic decay offers sent.`);
     }
 
     async function triggerDispute() {
+      updateStepIndicator(2);
       const msg = document.getElementById('disputeMsg').value;
       const res = await fetch('/api/dispute', {
         method: 'POST',
@@ -403,13 +474,14 @@
       });
       const data = await res.json();
 
-      addLog('WHATSAPP', 'Client Incoming', `"${msg}"`);
-      addLog('DISCORD', 'Gemini AI Translation Report', `⚠️ CLIENT DISPUTE RECEIVED [${data.invId}]\n\n${data.bugReport}\n\nReply PROOF ${data.invId} <link> to settle.`);
+      addLog('WHATSAPP', 'Client Complaint', `"${msg}"`);
+      addLog('DISCORD', 'Gemini AI Bug Report', `⚠️ CLIENT DISPUTE RECEIVED [${data.invId}]\n\n${data.bugReport}\n\nReply PROOF ${data.invId} <link> to settle.`);
       addLog('TELEGRAM', '@freelancer_alerts', `🚨 URGENT: Client dispute filed for [${data.invId}] via WHATSAPP!\nCheck Discord for Gemini technical report.`);
       addLog('WHATSAPP', 'Client ACK', `✅ Feedback received for [${data.invId}]. Converted into developer bug report.`);
     }
 
     async function triggerResolve() {
+      updateStepIndicator(3);
       const url = document.getElementById('proofUrl').value;
       const res = await fetch('/api/resolve', {
         method: 'POST',

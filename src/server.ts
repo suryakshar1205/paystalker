@@ -41,7 +41,23 @@ export function startDashboardServer() {
       return;
     }
 
-    // API: Trigger Invoice Collect
+    // API: Fetch All Invoices (Multi-Client & Multi-Dispute)
+    if (req.method === 'GET' && url === '/api/invoices') {
+      const invoices = Array.from(activeInvoices.values()).map(inv => {
+        const decay = getDecayingDiscount(inv.createdAt, inv.amount);
+        return {
+          ...inv,
+          currentDiscountPercent: decay.currentPercent,
+          discountedAmount: decay.discountedAmount
+        };
+      });
+
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(invoices));
+      return;
+    }
+
+    // API: Trigger Invoice Collect (Multi-Client Creation)
     if (req.method === 'POST' && url === '/api/collect') {
       let body = '';
       req.on('data', (chunk: any) => { body += chunk; });
@@ -79,6 +95,7 @@ export function startDashboardServer() {
             invId,
             amount,
             clientEmail,
+            description,
             discountedAmount: decay.discountedAmount,
             discountPercent: decay.currentPercent
           }));
@@ -90,7 +107,7 @@ export function startDashboardServer() {
       return;
     }
 
-    // API: Trigger Client WhatsApp Dispute
+    // API: Trigger Client WhatsApp Dispute (Multi-Issue Resolution)
     if (req.method === 'POST' && url === '/api/dispute') {
       let body = '';
       req.on('data', (chunk: any) => { body += chunk; });
@@ -98,13 +115,24 @@ export function startDashboardServer() {
         try {
           const payload = JSON.parse(body || '{}');
           const message = payload.message || 'The checkout button crashes on iOS Safari when tapping pay!';
-          
-          const activeList = Array.from(activeInvoices.values());
-          const targetInvoice = activeList[activeList.length - 1];
+          const requestedInvId = payload.invId;
+
+          let targetInvoice: Invoice | undefined;
+          if (requestedInvId && activeInvoices.has(requestedInvId)) {
+            targetInvoice = activeInvoices.get(requestedInvId);
+          } else {
+            const activeList = Array.from(activeInvoices.values());
+            targetInvoice = activeList[activeList.length - 1];
+          }
+
           const invId = targetInvoice ? targetInvoice.id : 'INV-8842';
 
           if (targetInvoice) {
             targetInvoice.status = 'DISPUTED_BUG';
+            targetInvoice.dispute = {
+              issueDescription: message,
+              reportedAt: new Date()
+            };
           }
 
           const bugReport = await translateWhatsAppToDiscordBug(message);
@@ -131,13 +159,23 @@ export function startDashboardServer() {
         try {
           const payload = JSON.parse(body || '{}');
           const proofUrl = payload.proofUrl || 'https://github.com/acme/checkout-repo/pull/42';
-          
-          const activeList = Array.from(activeInvoices.values());
-          const targetInvoice = activeList[activeList.length - 1];
+          const requestedInvId = payload.invId;
+
+          let targetInvoice: Invoice | undefined;
+          if (requestedInvId && activeInvoices.has(requestedInvId)) {
+            targetInvoice = activeInvoices.get(requestedInvId);
+          } else {
+            const activeList = Array.from(activeInvoices.values());
+            targetInvoice = activeList[activeList.length - 1];
+          }
+
           const invId = targetInvoice ? targetInvoice.id : 'INV-8842';
 
           if (targetInvoice) {
             targetInvoice.status = 'PAID';
+            if (targetInvoice.dispute) {
+              targetInvoice.dispute.proofOfWorkUrl = proofUrl;
+            }
           }
 
           const resolutionEmail = await generateExecutiveResolutionEmail(invId, proofUrl);

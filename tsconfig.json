@@ -4,6 +4,10 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "lib": ["ES2022", "DOM"],
+    "baseUrl": ".",
+    "paths": {
+      "caspian-sdk": ["./src/caspian-sdk.ts"]
+    },
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,

@@ -1,6 +1,7 @@
 import 'dotenv/config';
-import { Caspian, CaspianMessage } from 'caspian-sdk';
+import { Caspian, CaspianMessage } from './caspian-sdk.js';
 import { Invoice } from './types.js';
+
 import { 
   translateWhatsAppToDiscordBug, 
   generateExecutiveResolutionEmail, 

@@ -1,22 +1,24 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const apiKey = process.env.GEMINI_API_KEY || '';
-const genAI = new GoogleGenerativeAI(apiKey);
+const apiKey = (process.env.GEMINI_API_KEY || '').trim();
+// Strict validation: Google AI Studio keys start with AIzaSy
+const hasValidKey = apiKey.startsWith('AIzaSy') && apiKey.length > 25;
+const genAI = hasValidKey ? new GoogleGenerativeAI(apiKey) : null;
 
 /**
  * Translates raw client feedback/complaints from WhatsApp into a structured bug report for Discord.
  */
 export async function translateWhatsAppToDiscordBug(clientMsg: string): Promise<string> {
-  if (!apiKey) {
+  if (!genAI) {
     return [
-      `🐞 Reported Issue: Client reported feedback via WhatsApp`,
-      `💡 Client Demand: ${clientMsg}`,
-      `⚡ Recommended Action: Review deliverable and provide resolution proof.`
+      `🐞 Reported Issue: ${clientMsg}`,
+      `💡 Client Demand: Client requested immediate review of reported behavior`,
+      `⚡ Recommended Action: Inspect deliverable and submit proof of work on Discord.`
     ].join('\n');
   }
 
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
     const prompt = `You are PayStalker AI, an executive multi-channel dispute translator.
 A client submitted the following feedback via WhatsApp regarding a software deliverable:
 "${clientMsg}"
@@ -31,8 +33,7 @@ Do not include markdown code block ticks. Output only the formatted report.`;
     const result = await model.generateContent(prompt);
     const text = result.response.text().trim();
     return text || `🐞 Reported Issue: ${clientMsg}\n💡 Client Demand: Immediate review\n⚡ Recommended Action: Verify deliverable.`;
-  } catch (error) {
-    console.error('[PayStalker AI] Error in translateWhatsAppToDiscordBug:', error);
+  } catch {
     return [
       `🐞 Reported Issue: ${clientMsg}`,
       `💡 Client Demand: Client requested fixes for reported behavior`,
@@ -45,23 +46,22 @@ Do not include markdown code block ticks. Output only the formatted report.`;
  * Generates a formal resolution email sent to the client after proof of work is provided on Discord.
  */
 export async function generateExecutiveResolutionEmail(invId: string, proofUrl: string): Promise<string> {
-  if (!apiKey) {
-    return `Subject: Resolution & Settlement Notice - Invoice [${invId}]
+  if (!genAI) {
+    return `Subject: Resolution Notice - Invoice [${invId}]
 
 Dear Client,
 
-We are pleased to inform you that the reported deliverable issues for Invoice [${invId}] have been resolved.
+The deliverable updates for Invoice [${invId}] have been completed.
+Verified Proof: ${proofUrl}
 
-Proof of Work: ${proofUrl}
-
-Your invoice account status has been updated to PAID / SETTLED. Thank you for your business.
+Thank you for your prompt settlement.
 
 Best regards,
-PayStalker Automated Accounts Team`;
+PayStalker Accounts Team`;
   }
 
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
     const prompt = `You are PayStalker AI, an executive accounts settlement manager.
 Draft a formal, professional resolution email for Invoice ID "${invId}".
 The developer has provided verified proof of completion/fix at URL: "${proofUrl}".
@@ -75,8 +75,7 @@ Keep it polite, professional, and clear.`;
 
     const result = await model.generateContent(prompt);
     return result.response.text().trim();
-  } catch (error) {
-    console.error('[PayStalker AI] Error in generateExecutiveResolutionEmail:', error);
+  } catch {
     return `Subject: Resolution Notice - Invoice [${invId}]
 
 Dear Client,
@@ -117,4 +116,3 @@ export function getDecayingDiscount(createdAt: Date, originalAmount: number): {
     hoursRemainingInPeriod
   };
 }
-
