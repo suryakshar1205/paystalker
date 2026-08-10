@@ -3,6 +3,12 @@
 .env.local
 .env.*.local
 
+# Documentation / Prompt files
+prompts.md
+DEMO.md
+GEMINI.md
+
+
 # Node Dependencies
 node_modules/
 npm-debug.log*
