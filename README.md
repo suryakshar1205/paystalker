@@ -3,7 +3,10 @@
 > **Caspian 15-Day AI Agent Hackathon Submission**
 > *"Your agent can think. It just can't reach anyone. Caspian gives it hands across Discord, WhatsApp, Email, and Telegram."*
 
+![PayStalker Thumbnail](file:///C:/Users/surya/.gemini/antigravity-ide/brain/65834f21-4623-4202-a6d4-c3245907c97c/paystalker_thumbnail_1786386846004.png)
+
 ---
+
 
 ## 💡 The Problem & Creative Vision
 
