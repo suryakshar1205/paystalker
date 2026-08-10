@@ -64,10 +64,11 @@ Freelancers lose thousands of hours and billions of dollars chasing overdue invo
 
 ### 1. Installation
 ```bash
-git clone https://github.com/your-username/paystalker.git
+git clone https://github.com/suryakshar1205/paystalker.git
 cd paystalker
 npm install
 ```
+
 
 ### 2. Live Demo Simulation (Instant 30-Second Test)
 Judges can instantly run the complete 4-channel workflow live without needing 4 physical phones:
