@@ -1,10 +1,10 @@
 import 'dotenv/config';
 import { activeInvoices } from './index.js';
-import { getDecayingDiscount, translateWhatsAppToDiscordBug, generateExecutiveResolutionEmail } from './aiService.js';
+import { getDecayingDiscount, translateSlackToDiscordBug, generateExecutiveResolutionEmail } from './aiService.js';
 
 /**
  * Live Multi-Channel Simulation Suite for Hackathon Judges.
- * Demonstrates the end-to-end autonomous flow across Discord, WhatsApp, Email, and Telegram
+ * Demonstrates the end-to-end autonomous flow across Discord, Slack, and Email
  * without requiring external API credentials.
  */
 export async function runLiveSimulation() {
@@ -25,7 +25,7 @@ export async function runLiveSimulation() {
     amount,
     currentDiscountPercent: 10,
     clientEmail: 'client@acmecorp.com',
-    clientPhone: 'whatsapp:+14155552671',
+    clientSlack: '#client-discussions',
     description: 'Mobile Checkout Redesign',
     status: 'PENDING',
     createdAt
@@ -35,17 +35,17 @@ export async function runLiveSimulation() {
 
   console.log(`\n   ⚡ [PayStalker Engine] Generated Invoice ${invId}`);
   console.log(`   --> Dispatching Email to client@acmecorp.com: Payment Notice ($${amount}) with ${decay.currentPercent}% discount ($${decay.discountedAmount}).`);
-  console.log(`   --> Dispatching WhatsApp to +14155552671: Interactive settlement prompt & dispute trigger.`);
+  console.log(`   --> Dispatching Slack to #client-discussions: Interactive settlement prompt & dispute trigger.`);
   console.log(`   --> Discord ACK sent: 🎯 PayStalker Target Acquired [${invId}].`);
 
-  // Step 2: Client files a deliverable complaint on WhatsApp
+  // Step 2: Client files a deliverable complaint on Slack
   console.log('\n----------------------------------------------------------------');
-  console.log('🔹 [STEP 2] Client sends complaint via WhatsApp:');
-  const clientWhatsAppMsg = "Hey, the payment gateway crashes on iOS Safari when tapping pay!";
-  console.log(`   Client WhatsApp: "${clientWhatsAppMsg}"`);
+  console.log('🔹 [STEP 2] Client sends complaint via Slack:');
+  const clientSlackMsg = "Hey, the payment gateway crashes on iOS Safari when tapping pay!";
+  console.log(`   Client Slack: "${clientSlackMsg}"`);
 
-  console.log('\n   🤖 [Gemini AI Engine] Translating WhatsApp complaint to Discord Technical Bug Format...');
-  const translatedBug = await translateWhatsAppToDiscordBug(clientWhatsAppMsg);
+  console.log('\n   🤖 [Gemini AI Engine] Translating Slack complaint to Discord Technical Bug Format...');
+  const translatedBug = await translateSlackToDiscordBug(clientSlackMsg);
 
   console.log('\n   --> Dispatching to Discord (#freelancer-dev-alerts):');
   console.log('   ------------------------------------------------------');
@@ -61,7 +61,7 @@ export async function runLiveSimulation() {
   console.log('\n   🤖 [Gemini AI Engine] Generating Executive Resolution Email...');
   const resolutionEmail = await generateExecutiveResolutionEmail(invId, proofUrl);
 
-  console.log('\n   --> Dispatching WhatsApp Resolution Notice to Client:');
+  console.log('\n   --> Dispatching Slack Resolution Notice to Client Workspace (#client-discussions):');
   console.log(`   "✅ Developer provided proof of completion for [${invId}]: ${proofUrl}. Account closed."`);
 
   console.log('\n   --> Dispatching Formal Executive Resolution Email to Client:');

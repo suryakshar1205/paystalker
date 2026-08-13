@@ -16,6 +16,7 @@ export interface Invoice {
   amount: number;
   currentDiscountPercent: number;
   clientEmail: string;
+  clientSlack?: string;
   clientPhone?: string;
   description: string;
   status: InvoiceStatus;

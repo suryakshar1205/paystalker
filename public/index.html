@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PayStalker — Multi-Client Caspian AI Arbitrator</title>
+  <title>PayStalker — Caspian Multi-Channel AI Arbitrator</title>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -195,37 +195,36 @@
 
     .channels-bar {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
     }
 
     .channel-card {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border-color);
       border-radius: 10px;
-      padding: 12px;
+      padding: 14px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .channel-icon {
-      width: 34px;
-      height: 34px;
+      width: 36px;
+      height: 36px;
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: 18px;
     }
 
     .icon-discord { background: rgba(88, 101, 242, 0.2); color: #5865F2; }
-    .icon-whatsapp { background: rgba(37, 211, 102, 0.2); color: #25D366; }
+    .icon-slack { background: rgba(224, 30, 90, 0.2); color: #E01E5A; }
     .icon-email { background: rgba(234, 67, 53, 0.2); color: #EA4335; }
-    .icon-telegram { background: rgba(0, 136, 204, 0.2); color: #0088CC; }
 
-    .channel-info h4 { font-size: 12px; font-weight: 600; }
-    .channel-info p { font-size: 10px; color: var(--text-muted); }
+    .channel-info h4 { font-size: 13px; font-weight: 600; }
+    .channel-info p { font-size: 11px; color: var(--text-muted); }
 
     /* Multi-Client Invoices Table */
     .invoices-table {
@@ -273,9 +272,8 @@
       animation: fadeIn 0.3s ease;
     }
 
-    .log-item.whatsapp { border-left-color: var(--accent-green); }
+    .log-item.slack { border-left-color: #E01E5A; }
     .log-item.email { border-left-color: var(--accent-amber); }
-    .log-item.telegram { border-left-color: var(--accent-cyan); }
     .log-item.discord { border-left-color: #5865F2; }
 
     .log-header { display: flex; justify-content: space-between; margin-bottom: 4px; color: var(--text-muted); font-size: 10px; }
@@ -290,12 +288,12 @@
     <div class="brand">
       <span class="brand-icon">🎯</span>
       <h1>PayStalker AI</h1>
-      <span class="badge">Multi-Client & Multi-Dispute Engine</span>
+      <span class="badge">Multi-Channel Caspian AI Arbitrator</span>
     </div>
     <div>
       <span style="font-size: 12px; color: var(--accent-green); display: flex; align-items: center; gap: 6px;">
         <span style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></span>
-        Single-Handler Active Across 4 Channels
+        Single-Handler Active (Discord, Slack, Email)
       </span>
     </div>
   </header>
@@ -309,7 +307,7 @@
     <span>➔</span>
     <div class="step-box" id="stepIndicator2">
       <span class="step-num">2</span>
-      <span><strong>Client Files Bug Dispute</strong> (WhatsApp -> Gemini AI Report)</span>
+      <span><strong>Client Files Bug Dispute</strong> (Slack -> Gemini AI Report)</span>
     </div>
     <span>➔</span>
     <div class="step-box" id="stepIndicator3">
@@ -337,7 +335,7 @@
         </select>
         <input type="text" id="collectCmd" value="!collect 1500 client@acmecorp.com Mobile App Redesign">
         <button type="button" class="btn btn-primary" onclick="triggerCollect()">
-          🚀 Issue Invoice (Email + WhatsApp)
+          🚀 Issue Invoice (Email + Slack)
         </button>
       </div>
 
@@ -352,11 +350,11 @@
 
       <!-- Step 2 Card -->
       <div class="step-card">
-        <h3>⚠️ STEP 2: File Client WhatsApp Bug</h3>
-        <label>WhatsApp Client Feedback:</label>
+        <h3>⚠️ STEP 2: File Client Slack Bug</h3>
+        <label>Slack Client Feedback:</label>
         <textarea id="disputeMsg" rows="2">The payment gateway crashes on mobile checkout!</textarea>
         <button type="button" class="btn btn-amber" onclick="triggerDispute()">
-          🤖 WhatsApp Dispute -> Gemini AI Bug
+          🤖 Slack Dispute -> Gemini AI Bug
         </button>
       </div>
 
@@ -373,20 +371,20 @@
 
     <!-- Main Dashboard Grid -->
     <div class="dashboard-grid">
-      <!-- 4 Channels Bar -->
+      <!-- 3 Channels Bar -->
       <div class="channels-bar">
         <div class="channel-card">
           <div class="channel-icon icon-discord">💬</div>
           <div class="channel-info">
             <h4>Discord</h4>
-            <p>Freelancer Hub</p>
+            <p>Freelancer Command</p>
           </div>
         </div>
         <div class="channel-card">
-          <div class="channel-icon icon-whatsapp">🟢</div>
+          <div class="channel-icon icon-slack">🟪</div>
           <div class="channel-info">
-            <h4>WhatsApp</h4>
-            <p>Client Complaints</p>
+            <h4>Slack</h4>
+            <p>Client Workplace</p>
           </div>
         </div>
         <div class="channel-card">
@@ -394,13 +392,6 @@
           <div class="channel-info">
             <h4>Email</h4>
             <p>Executive Audits</p>
-          </div>
-        </div>
-        <div class="channel-card">
-          <div class="channel-icon icon-telegram">✈️</div>
-          <div class="channel-info">
-            <h4>Telegram</h4>
-            <p>Urgent Dev Alerts</p>
           </div>
         </div>
       </div>
@@ -439,7 +430,7 @@
               <span>DISCORD • System</span>
               <span>Active</span>
             </div>
-            <div class="log-content">🚀 PayStalker Multi-Client Arbitrator Ready. Select a client preset above to test multi-invoice workflows live.</div>
+            <div class="log-content">🚀 PayStalker Multi-Channel Arbitrator Ready (Discord, Slack, Email). Select a client preset above to test multi-invoice workflows live.</div>
           </div>
         </div>
       </div>
@@ -522,8 +513,8 @@
       
       addLog('DISCORD', 'Command Initiated', `Issued: ${cmd}`);
       addLog('EMAIL', data.clientEmail, `[PayStalker Invoice ${data.invId}] Payment Notice: $${data.amount}\n⚡ Dynamic Early Discount: ${data.discountPercent}% off ($${data.discountedAmount})`);
-      addLog('WHATSAPP', 'Client Phone', `🎯 PayStalker Target Acquired [${data.invId}]: $${data.amount} issued for "${data.description}". Reply BUG if deliverable issues exist.`);
-      addLog('DISCORD', 'ACK', `🎯 PayStalker Target Acquired [${data.invId}]: Email & WhatsApp dynamic decay offers sent.`);
+      addLog('SLACK', '#client-discussions', `🎯 PayStalker Target Acquired [${data.invId}]: $${data.amount} issued for "${data.description}". Reply BUG if deliverable issues exist.`);
+      addLog('DISCORD', 'ACK', `🎯 PayStalker Target Acquired [${data.invId}]: Email & Slack dynamic decay offers sent.`);
 
       await fetchInvoices();
     }
@@ -539,10 +530,9 @@
       });
       const data = await res.json();
 
-      addLog('WHATSAPP', 'Client Complaint', `"${msg}"`);
+      addLog('SLACK', 'Client Complaint', `"${msg}"`);
       addLog('DISCORD', 'Gemini AI Bug Report', `⚠️ CLIENT DISPUTE RECEIVED [${data.invId}]\n\n${data.bugReport}\n\nReply PROOF ${data.invId} <link> to settle.`);
-      addLog('TELEGRAM', '@freelancer_alerts', `🚨 URGENT: Client dispute filed for [${data.invId}] via WHATSAPP!\nCheck Discord for Gemini technical report.`);
-      addLog('WHATSAPP', 'Client ACK', `✅ Feedback received for [${data.invId}]. Converted into developer bug report.`);
+      addLog('SLACK', 'Client ACK', `✅ Feedback received for [${data.invId}]. Converted into developer bug report.`);
 
       await fetchInvoices();
     }
@@ -559,9 +549,9 @@
       const data = await res.json();
 
       addLog('DISCORD', 'Developer Proof', `PROOF ${data.invId} ${url}`);
-      addLog('WHATSAPP', 'Client Resolution', `✅ Developer provided proof of completion for [${data.invId}]: ${url}. Account closed.`);
+      addLog('SLACK', 'Client Resolution', `✅ Developer provided proof of completion for [${data.invId}]: ${url}. Account closed.`);
       addLog('EMAIL', data.clientEmail, `Subject: Resolved & Settled [${data.invId}]\n\n${data.resolutionEmail}`);
-      addLog('DISCORD', 'Final ACK', `🎉 PayStalker Target Settled [${data.invId}] across all 4 channels!`);
+      addLog('DISCORD', 'Final ACK', `🎉 PayStalker Target Settled [${data.invId}] across all channels!`);
 
       await fetchInvoices();
     }

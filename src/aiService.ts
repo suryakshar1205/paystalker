@@ -1,26 +1,25 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const apiKey = (process.env.GEMINI_API_KEY || '').trim();
-// Strict validation: Google AI Studio keys start with AIzaSy
 const hasValidKey = apiKey.startsWith('AIzaSy') && apiKey.length > 25;
 const genAI = hasValidKey ? new GoogleGenerativeAI(apiKey) : null;
 
 /**
- * Translates raw client feedback/complaints from WhatsApp into a structured bug report for Discord.
+ * Translates raw client feedback/complaints from Slack or WhatsApp into a structured bug report for Discord.
  */
-export async function translateWhatsAppToDiscordBug(clientMsg: string): Promise<string> {
+export async function translateSlackToDiscordBug(clientMsg: string): Promise<string> {
   if (!genAI) {
     return [
       `🐞 Reported Issue: ${clientMsg}`,
-      `💡 Client Demand: Client requested immediate review of reported behavior`,
-      `⚡ Recommended Action: Inspect deliverable and submit proof of work on Discord.`
+      `💡 Client Demand: Client requested immediate review of reported deliverable behavior`,
+      `⚡ Recommended Action: Inspect codebase and submit proof of completion on Discord.`
     ].join('\n');
   }
 
   try {
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
     const prompt = `You are PayStalker AI, an executive multi-channel dispute translator.
-A client submitted the following feedback via WhatsApp regarding a software deliverable:
+A client submitted the following feedback via Slack regarding a software deliverable:
 "${clientMsg}"
 
 Translate this into a concise, professional technical bug report formatted strictly as:
@@ -41,6 +40,9 @@ Do not include markdown code block ticks. Output only the formatted report.`;
     ].join('\n');
   }
 }
+
+// Alias for backward compatibility
+export const translateWhatsAppToDiscordBug = translateSlackToDiscordBug;
 
 /**
  * Generates a formal resolution email sent to the client after proof of work is provided on Discord.
