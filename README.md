@@ -93,10 +93,3 @@ npm start
 ```
 
 ---
-
-## 🎬 2-Minute Pitch & Demonstration Script
-
-- **0:00 - 0:30**: **The Problem** — Show freelancers overwhelmed by unpaid invoices & Slack client complaints.
-- **0:30 - 1:00**: **Multi-Channel Dispatch** — Developer types `!collect 1500 client@acme.com Landing Page` on Discord. PayStalker dispatches dynamic discount emails and Slack interactive notices.
-- **1:00 - 1:30**: **AI Dispute Arbitration** — Client replies on Slack with a complaint. Gemini 1.5 Flash formats it into a developer bug report on Discord.
-- **1:30 - 2:00**: **Autonomous Settlement** — Developer submits `PROOF INV-8842 <link>` on Discord. PayStalker updates Slack and sends formal executive emails closing the account.
